@@ -11,16 +11,16 @@ async function getDashboardData(query) {
       weatherResponse.json(),
       airportsResponse.json(),
     ]);
-    const destination = destinationJSON[0];
-    const weather = weatherJSON[0];
-    const airports = airportsJSON[0];
+    const destination = destinationJSON.length ? destinationJSON[0] : null;
+    const weather = weatherJSON.length ? weatherJSON[0] : null;
+    const airports = airportsJSON.length ? airportsJSON[0] : null;
 
     const resultObj = {
-      city: destination?.name,
-      country: destination?.country,
-      temperature: weather?.temperature,
-      weather: weather?.weather_description,
-      airport: airports?.name,
+      city: destination ? destination.name : null,
+      country: destination ? destination.country : null,
+      temperature: weather ? weather.temperature : null,
+      weather: weather ? weather.weather_description : null,
+      airport: airports ? airports.name : null,
     };
     return resultObj;
   } catch (error) {
